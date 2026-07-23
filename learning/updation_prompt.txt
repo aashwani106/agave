@@ -1,0 +1,12 @@
+Audit the entire learning course.
+
+Check whether Agave has changed in ways that affect previous lessons.
+
+If any architecture, APIs, folder structure, or implementation has changed:
+
+- Update only the affected lessons.
+- Add a "Changes Since Last Version" section.
+- Keep old explanations if they're still useful, but clearly mark them as historical.
+- Update diagrams, code indexes, and architecture documents accordingly.
+
+Treat the course as a living document that evolves with Agave.
