@@ -190,9 +190,10 @@ impl Dashboard {
                         let vat_status_formatted = format_vat_status(vat_status.as_ref());
 
                         progress_bar.set_message(format!(
-                            "{}{}| Processed Slot: {} | Confirmed Slot: {} | Finalized Slot: {} | \
-                             Full Snapshot Slot: {} | Incremental Snapshot Slot: {} | \
-                             Transactions: {} | {}\n{}",
+                            "{}\n{}{}| Processed Slot: {} | Confirmed Slot: {} | Finalized Slot: \
+                             {} | Full Snapshot Slot: {} | Incremental Snapshot Slot: {} | \
+                             Transactions: {} | {}",
+                            vat_status_formatted,
                             uptime,
                             if health == "ok" {
                                 "".to_string()
@@ -214,7 +215,6 @@ impl Dashboard {
                                 .unwrap_or_else(|| '-'.to_string()),
                             transaction_count,
                             identity_balance,
-                            vat_status_formatted,
                         ));
                         thread::sleep(refresh_interval);
                     }
@@ -234,10 +234,6 @@ fn format_vat_status(
     let Some(status) = status else {
         return "VAT: failed to connect to admin RPC".to_string();
     };
-
-    if !status.vat_active {
-        return "VAT: inactive".to_string();
-    }
 
     format!(
         "{}{}",
